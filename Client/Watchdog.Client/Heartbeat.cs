@@ -122,9 +122,9 @@ namespace Watchdog.Client
 
         private enum Commands
         {
-            SetTimeOut,
-            Heartbeat,
-            RequestKill
+            SetTimeOut = 0,
+            Heartbeat = 1,
+            RequestKill = 2
         }
     }
 }

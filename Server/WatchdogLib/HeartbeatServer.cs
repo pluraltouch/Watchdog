@@ -27,9 +27,9 @@ namespace WatchdogLib
     {
         private enum Commands
         {
-            SetTimeOut,
-            Heartbeat,
-            RequestKill,
+            SetTimeOut = 0,
+            Heartbeat = 1,
+            RequestKill = 2,
         }
 
         private const string PipeName = "named_pipe_watchdog";
