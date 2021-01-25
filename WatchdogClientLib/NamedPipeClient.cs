@@ -2,20 +2,20 @@
 using System.IO.Pipes;
 using System.Threading;
 using WatchdogClient.IO;
-using WatchdogClient.Threading;
 
 namespace WatchdogClient
 {
     public delegate void PipeExceptionEventHandler(Exception exception);
 
     /// <summary>
-    /// Wraps a <see cref="NamedPipeClientStream"/>.
+    ///     Wraps a <see cref="NamedPipeClientStream" />.
     /// </summary>
     /// <typeparam name="TReadWrite">Reference type to read from and write to the named pipe</typeparam>
     public class NamedPipeClient<TReadWrite> : NamedPipeClient<TReadWrite, TReadWrite> where TReadWrite : class
     {
         /// <summary>
-        /// Constructs a new <c>NamedPipeClient</c> to connect to the NamedPipeNamedPipeServer/> specified by <paramref name="pipeName"/>.
+        ///     Constructs a new <c>NamedPipeClient</c> to connect to the NamedPipeNamedPipeServer/> specified by
+        ///     <paramref name="pipeName" />.
         /// </summary>
         /// <param name="pipeName">Name of the server's pipe</param>
         public NamedPipeClient(string pipeName) : base(pipeName)
@@ -24,7 +24,7 @@ namespace WatchdogClient
     }
 
     /// <summary>
-    /// Wraps a <see cref="NamedPipeClientStream"/>.
+    ///     Wraps a <see cref="NamedPipeClientStream" />.
     /// </summary>
     /// <typeparam name="TRead">Reference type to read from the named pipe</typeparam>
     /// <typeparam name="TWrite">Reference type to write to the named pipe</typeparam>
@@ -32,51 +32,19 @@ namespace WatchdogClient
         where TRead : class
         where TWrite : class
     {
-        /// <summary>
-        /// Gets or sets whether the client should attempt to reconnect when the pipe breaks
-        /// due to an error or the other end terminating the connection.
-        /// Default value is <c>true</c>.
-        /// </summary>
-        public bool AutoReconnect { get; set; }
-
-        /// <summary>
-        /// Invoked whenever a message is received from the server.
-        /// </summary>
-        public event ConnectionMessageEventHandler<TRead, TWrite> ServerMessage;
-
-        /// <summary>
-        /// Invoked when the client disconnects from the server (e.g., the pipe is closed or broken).
-        /// </summary>
-        public event ConnectionEventHandler<TRead, TWrite> Disconnected;
-
-
-        /// <summary>
-        /// Invoked when the client connects to the server 
-        /// </summary>
-        public event ConnectionEventHandler<TRead, TWrite> Connected;
-        /// <summary>
-        /// Invoked whenever an exception is thrown during a read or write operation on the named pipe.
-        /// </summary>
-        public event PipeExceptionEventHandler Error;
-
         private readonly string _pipeName;
-        private NamedPipeConnection<TRead, TWrite> _connection;
 
-        private readonly AutoResetEvent _connected    = new AutoResetEvent(false);
+        private readonly AutoResetEvent _connected = new AutoResetEvent(false);
         private readonly AutoResetEvent _disconnected = new AutoResetEvent(false);
+        private NamedPipeConnection<TRead, TWrite> _connection;
 
         private volatile bool _closedExplicitly;
         private bool _wasConnected;
-   
-
-        /// <summary>
-        /// Gets a value indicating whether the pipe is connected or not.
-        /// </summary>
-        public bool IsConnected { get { return _connection.IsConnected; } }
 
 
         /// <summary>
-        /// Constructs a new <c>NamedPipeClient</c> to connect to the NamedPipeServer /> specified by <paramref name="pipeName"/>.
+        ///     Constructs a new <c>NamedPipeClient</c> to connect to the NamedPipeServer /> specified by
+        ///     <paramref name="pipeName" />.
         /// </summary>
         /// <param name="pipeName">Name of the server's pipe</param>
         public NamedPipeClient(string pipeName)
@@ -86,13 +54,26 @@ namespace WatchdogClient
         }
 
         /// <summary>
-        /// Connects to the named pipe server asynchronously.
-        /// This method returns immediately, possibly before the connection has been established.
+        ///     Gets or sets whether the client should attempt to reconnect when the pipe breaks
+        ///     due to an error or the other end terminating the connection.
+        ///     Default value is <c>true</c>.
+        /// </summary>
+        public bool AutoReconnect { get; set; }
+
+
+        /// <summary>
+        ///     Gets a value indicating whether the pipe is connected or not.
+        /// </summary>
+        public bool IsConnected => _connection.IsConnected;
+
+        /// <summary>
+        ///     Connects to the named pipe server asynchronously.
+        ///     This method returns immediately, possibly before the connection has been established.
         /// </summary>
         public void Start()
         {
             _closedExplicitly = false;
-            _wasConnected  = false;
+            _wasConnected = false;
             var worker = new Worker();
             worker.Error += OnError;
             worker.DoWork(ListenSync);
@@ -105,23 +86,47 @@ namespace WatchdogClient
         public void PushMessage(TWrite message)
         {
             if (_connection != null)
+            {
                 _connection.PushMessage(message);
+            }
         }
 
         /// <summary>
-        /// Closes the named pipe.
+        ///     Closes the named pipe.
         /// </summary>
         public void Stop()
         {
             _closedExplicitly = true;
             if (_connection != null)
+            {
                 _connection.Close();
+            }
         }
+
+        /// <summary>
+        ///     Invoked whenever a message is received from the server.
+        /// </summary>
+        public event ConnectionMessageEventHandler<TRead, TWrite> ServerMessage;
+
+        /// <summary>
+        ///     Invoked when the client disconnects from the server (e.g., the pipe is closed or broken).
+        /// </summary>
+        public event ConnectionEventHandler<TRead, TWrite> Disconnected;
+
+
+        /// <summary>
+        ///     Invoked when the client connects to the server
+        /// </summary>
+        public event ConnectionEventHandler<TRead, TWrite> Connected;
+        /// <summary>
+        ///     Invoked whenever an exception is thrown during a read or write operation on the named pipe.
+        /// </summary>
+        public event PipeExceptionEventHandler Error;
 
         #region Wait for connection/disconnection
 
         /// <summary>
-        /// Waits for connection
+        ///     Waits for connection
         /// </summary>
         public void WaitForConnection()
         {
@@ -129,7 +134,7 @@ namespace WatchdogClient
         }
 
         /// <summary>
-        /// Waits for connection with a time-out
+        ///     Waits for connection with a time-out
         /// </summary>
         /// <param name="millisecondsTimeout"></param>
         public void WaitForConnection(int millisecondsTimeout)
@@ -138,7 +143,7 @@ namespace WatchdogClient
         }
 
         /// <summary>
-        /// Waits for connection with a time-out
+        ///     Waits for connection with a time-out
         /// </summary>
         /// <param name="timeout"></param>
         public void WaitForConnection(TimeSpan timeout)
@@ -147,7 +152,7 @@ namespace WatchdogClient
         }
 
         /// <summary>
-        /// Wait for disconnection
+        ///     Wait for disconnection
         /// </summary>
         public void WaitForDisconnection()
         {
@@ -155,7 +160,7 @@ namespace WatchdogClient
         }
 
         /// <summary>
-        /// Wait for disconnection with time-out
+        ///     Wait for disconnection with time-out
         /// </summary>
         /// <param name="millisecondsTimeout"></param>
         public void WaitForDisconnection(int millisecondsTimeout)
@@ -164,7 +169,7 @@ namespace WatchdogClient
         }
 
         /// <summary>
-        /// Wait for disconnection with time-out
+        ///     Wait for disconnection with time-out
         /// </summary>
         /// <param name="timeout"></param>
         public void WaitForDisconnection(TimeSpan timeout)
@@ -188,9 +193,9 @@ namespace WatchdogClient
 
             // Create a Connection object for the data pipe
             _connection = ConnectionFactory.CreateConnection<TRead, TWrite>(dataPipe);
-            _connection.Disconnected   += OnDisconnected;
+            _connection.Disconnected += OnDisconnected;
             _connection.ReceiveMessage += OnReceiveMessage;
-            _connection.Error          += ConnectionOnError;
+            _connection.Error += ConnectionOnError;
             _connection.Open();
 
             _connected.Set();
@@ -199,7 +204,9 @@ namespace WatchdogClient
         private void OnDisconnected(NamedPipeConnection<TRead, TWrite> connection)
         {
             if (Disconnected != null)
+            {
                 Disconnected(connection);
+            }
 
             _wasConnected = false;
 
@@ -207,12 +214,13 @@ namespace WatchdogClient
 
             // Reconnect
             if (AutoReconnect && !_closedExplicitly)
+            {
                 Start();
+            }
         }
 
         private void OnReceiveMessage(NamedPipeConnection<TRead, TWrite> connection, TRead message)
         {
-
             if (!_wasConnected && Connected != null)
             {
                 Connected(connection);
@@ -220,7 +228,9 @@ namespace WatchdogClient
             }
 
             if (ServerMessage != null)
+            {
                 ServerMessage(connection, message);
+            }
         }
 
         /// <summary>
@@ -238,13 +248,15 @@ namespace WatchdogClient
         private void OnError(Exception exception)
         {
             if (Error != null)
+            {
                 Error(exception);
+            }
         }
 
         #endregion
     }
 
-    static class PipeClientFactory
+    internal static class PipeClientFactory
     {
         public static PipeStreamWrapper<TRead, TWrite> Connect<TRead, TWrite>(string pipeName)
             where TRead : class
@@ -262,7 +274,8 @@ namespace WatchdogClient
 
         private static NamedPipeClientStream CreatePipe(string pipeName)
         {
-            return new NamedPipeClientStream(".", pipeName, PipeDirection.InOut, PipeOptions.Asynchronous | PipeOptions.WriteThrough);
+            return new NamedPipeClientStream(".", pipeName, PipeDirection.InOut,
+                PipeOptions.Asynchronous | PipeOptions.WriteThrough);
         }
     }
 }
