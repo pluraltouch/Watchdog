@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.IO.Pipes;
 using System.Threading;
-using WatchdogClient.IO;
+using Watchdog.Client.IO;
 
-namespace WatchdogClient
+namespace Watchdog.Client
 {
     /// <summary>
     ///     Represents a connection between a named pipe client and server.

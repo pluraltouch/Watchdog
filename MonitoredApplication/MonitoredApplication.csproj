@@ -81,9 +81,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WatchdogClientLib\WatchdogClientLib.csproj">
+    <ProjectReference Include="..\WatchdogClientLib\Watchdog.Client.csproj">
       <Project>{8668150c-c05f-43ca-9624-873ada5828f9}</Project>
-      <Name>WatchdogClientLib</Name>
+      <Name>Watchdog.Client</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -5,7 +5,7 @@ using System.Net;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace WatchdogClient.IO
+namespace Watchdog.Client.IO
 {
     /// <summary>
     ///     Wraps a <see cref="PipeStream" /> object and writes to it.  Serializes .NET CLR objects specified by

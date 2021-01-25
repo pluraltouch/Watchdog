@@ -5,7 +5,7 @@ using System.Net;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace WatchdogClient.IO
+namespace Watchdog.Client.IO
 {
     /// <summary>
     ///     Wraps a <see cref="PipeStream" /> object and reads from it.  Deserializes binary data sent by a

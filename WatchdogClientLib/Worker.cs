@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace WatchdogClient
+namespace Watchdog.Client
 {
     internal class Worker
     {

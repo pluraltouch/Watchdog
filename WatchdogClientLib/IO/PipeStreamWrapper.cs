@@ -3,7 +3,7 @@ using System.IO;
 using System.IO.Pipes;
 using System.Runtime.Serialization;
 
-namespace WatchdogClient.IO
+namespace Watchdog.Client.IO
 {
     /// <summary>
     ///     Wraps a <see cref="PipeStream" /> object to read and write .NET CLR objects.

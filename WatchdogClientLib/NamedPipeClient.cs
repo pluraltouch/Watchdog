@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO.Pipes;
 using System.Threading;
-using WatchdogClient.IO;
+using Watchdog.Client.IO;
 
-namespace WatchdogClient
+namespace Watchdog.Client
 {
     public delegate void PipeExceptionEventHandler(Exception exception);
 
