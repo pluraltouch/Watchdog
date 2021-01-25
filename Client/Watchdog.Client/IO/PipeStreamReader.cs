@@ -30,7 +30,7 @@ namespace Watchdog.Client.IO
         /// <summary>
         ///     Gets the underlying <c>PipeStream</c> object.
         /// </summary>
-        public PipeStream BaseStream { get; }
+        private PipeStream BaseStream { get; }
 
         /// <summary>
         ///     Gets a value indicating whether the pipe is connected or not.
@@ -76,7 +76,7 @@ namespace Watchdog.Client.IO
 
             if (bytesRead != lensize)
             {
-                throw new IOException(string.Format("Expected {0} bytes but read {1}", lensize, bytesRead));
+                throw new IOException($"Expected {lensize} bytes but read {bytesRead}");
             }
 
             return IPAddress.NetworkToHostOrder(BitConverter.ToInt32(lenbuf, 0));

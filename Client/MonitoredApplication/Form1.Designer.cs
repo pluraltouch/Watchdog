@@ -115,7 +115,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btn_Terminate);
             this.Name = "MonitoredApplicationForm";
-            this.Text = "Monitored Application";
+            this.Text = "Monitored Application 2";
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);

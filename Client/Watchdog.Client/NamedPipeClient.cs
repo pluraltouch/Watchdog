@@ -97,10 +97,7 @@ namespace Watchdog.Client
         public void Stop()
         {
             _closedExplicitly = true;
-            if (_connection != null)
-            {
-                _connection.Close();
-            }
+            _connection?.Close();
         }
 
         /// <summary>

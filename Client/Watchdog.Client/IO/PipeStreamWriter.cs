@@ -30,7 +30,7 @@ namespace Watchdog.Client.IO
         /// <summary>
         ///     Gets the underlying <c>PipeStream</c> object.
         /// </summary>
-        public PipeStream BaseStream { get; }
+        private PipeStream BaseStream { get; }
 
         /// <summary>
         ///     Writes an object to the pipe.  This method blocks until all data is sent.

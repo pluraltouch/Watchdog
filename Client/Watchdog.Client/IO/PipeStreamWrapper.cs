@@ -8,23 +8,6 @@ namespace Watchdog.Client.IO
     /// <summary>
     ///     Wraps a <see cref="PipeStream" /> object to read and write .NET CLR objects.
     /// </summary>
-    /// <typeparam name="TReadWrite">Reference type to read from and write to the pipe</typeparam>
-    public class PipeStreamWrapper<TReadWrite> : PipeStreamWrapper<TReadWrite, TReadWrite>
-        where TReadWrite : class
-    {
-        /// <summary>
-        ///     Constructs a new <c>PipeStreamWrapper</c> object that reads from and writes to the given <paramref name="stream" />
-        ///     .
-        /// </summary>
-        /// <param name="stream">Stream to read from and write to</param>
-        public PipeStreamWrapper(PipeStream stream) : base(stream)
-        {
-        }
-    }
-
-    /// <summary>
-    ///     Wraps a <see cref="PipeStream" /> object to read and write .NET CLR objects.
-    /// </summary>
     /// <typeparam name="TRead">Reference type to read from the pipe</typeparam>
     /// <typeparam name="TWrite">Reference type to write to the pipe</typeparam>
     public class PipeStreamWrapper<TRead, TWrite>
@@ -49,7 +32,7 @@ namespace Watchdog.Client.IO
         /// <summary>
         ///     Gets the underlying <c>PipeStream</c> object.
         /// </summary>
-        public PipeStream BaseStream { get; }
+        private PipeStream BaseStream { get; }
 
         /// <summary>
         ///     Gets a value indicating whether the <see cref="BaseStream" /> object is connected or not.
