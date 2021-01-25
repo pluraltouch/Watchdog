@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonitoredApplication", "MonitoredApplication\MonitoredApplication.csproj", "{BD78E5E6-40B6-4D02-8753-BB6AD04D48D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Watchdog.Client", "WatchdogClientLib\Watchdog.Client.csproj", "{8668150C-C05F-43CA-9624-873ADA5828F9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Watchdog.Client", "Watchdog.Client\Watchdog.Client.csproj", "{8668150C-C05F-43CA-9624-873ADA5828F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

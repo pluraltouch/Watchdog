@@ -81,7 +81,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WatchdogClientLib\Watchdog.Client.csproj">
+    <ProjectReference Include="..\Watchdog.Client\Watchdog.Client.csproj">
       <Project>{8668150c-c05f-43ca-9624-873ada5828f9}</Project>
       <Name>Watchdog.Client</Name>
     </ProjectReference>

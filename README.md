@@ -11,14 +11,14 @@ The watchdog also comes with a single client library that you can integrate in y
 # Overview
 ## System tray
 The application lives in the system tray, where it can be enabled, disabled and configured. The application can be configured through Settings and stopped or exited. Note that if your exit the watchdog it may automatically respawn, based on the general settings. The watchdog can also be stopped using the global shortcut using [CTR][ALT][W]. This is useful if the application that is monitored blocks the watchdog UI.  
-![Watchdog in system tray](/Screenshots/TaskbarMenu.png)
+![Watchdog in system tray](/Server/Screenshots/TaskbarMenu.png)
 
 ## Selecting applications to be watched
 The application allows watching as many applications as you need. The Crashing Application demonstrates different manners in which an application can exit, crash or freeze.   
-![Watchdog application selection](/Screenshots/ConfigurationForm.png)
+![Watchdog application selection](/Server/Screenshots/ConfigurationForm.png)
 
 ## Watchdog settings 
-![Watchdog application settings](/Screenshots/ApplicationSettingsMenu.png)  
+![Watchdog application settings](/Server/Screenshots/ApplicationSettingsMenu.png)  
 Multiple watchdog parameters can be modified per application  
 * Path         - The path of the application. The working directory is also based on this path
 * Arguments    - Startup arguments of the application
@@ -36,12 +36,12 @@ Multiple watchdog parameters can be modified per application
 
 ## Persistence 
 The application can be configured to start at on startup and/or be periodically checked to be running  
-![Watchdog general settings, determine restart behaviour](/Screenshots/GeneralSettingsMenu.png)  
+![Watchdog general settings, determine restart behaviour](/Server/Screenshots/GeneralSettingsMenu.png)  
 * Start Watchdog on Windows Startup - The application starts when the user logs in (the application does not run as a service) 
 * Periodically check if Watchdog is running - If enabled the Task Scheduler will try to start the application every 5 minutes
 ## Automatic reboot
 The application allows automatic, periodic reboots This may be useful to keep the system and it's applications run reliably.   
-![Watchdog reboot menu](/Screenshots/RebootMenu.png)
+![Watchdog reboot menu](/Server/Screenshots/RebootMenu.png)
 
 ## Copyright
 

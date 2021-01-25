@@ -1,0 +1,25 @@
+{
+  "ApplicationHandlers": [
+    {
+      "NonResponsiveInterval": 20,
+      "ApplicationPath": "D:\\2016Develop\\.github\\Watchdog\\Client\\MonitoredApplication\\bin\\Debug\\MonitoredApplication.exe",
+      "ApplicationName": "MonitoredApplication",
+      "UseHeartbeat": true,
+      "GrantKillRequest": true,
+      "HeartbeatInterval": 20,
+      "MaxProcesses": 10,
+      "MinProcesses": 1,
+      "Active": true,
+      "KeepExistingNoProcesses": true,
+      "StartupMonitorDelay": 20
+    }
+  ],
+  "ShowTrayIcon": true,
+  "PeriodicReboot": false,
+  "RebootPeriod": 0,
+  "RebootBefore": "0001-01-01T00:00:00",
+  "RebootAfter": "0001-01-01T00:00:00",
+  "RebootMode": 0,
+  "ForceMode": 0,
+  "RebootAfterTimeSlot": 0
+}

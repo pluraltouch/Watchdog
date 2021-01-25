@@ -18,7 +18,7 @@ taskkill /F /IM VBCSCompiler.exe
 
 FOR /F "tokens=*" %%G IN ('DIR /B /AD /S "%REPOPATH%bin"') DO RMDIR /S /Q "%%G"
 FOR /F "tokens=*" %%G IN ('DIR /B /AD /S "%REPOPATH%obj"') DO RMDIR /S /Q "%%G"
-RMDIR "%REPOPATH%packages" /S /Q
+RMDIR "%REPOPATH%server/packages" /S /Q
 REM RMDIR "%REPOPATH%build" /S /Q
 REM MD "%REPOPATH%build"
 REM copy /b NUL "%REPOPATH%build\.keep"
