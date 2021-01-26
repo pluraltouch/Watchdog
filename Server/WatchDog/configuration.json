@@ -1,17 +1,31 @@
 {
   "ApplicationHandlers": [
+  //  {
+  //    "NonResponsiveInterval": 20,
+  //    "ApplicationPath": "D:\\2016Develop\\.github\\Watchdog\\Client\\MonitoredApplication\\bin\\Debug\\MonitoredApplication.exe",
+  //    "ApplicationName": "MonitoredApplication",
+  //    "UseHeartbeat": true,
+  //    "GrantKillRequest": true,
+  //    "HeartbeatInterval": 5,
+  //    "MaxProcesses": 1,
+  //    "MinProcesses": 1,
+  //    "Active": true,
+  //    "KeepExistingNoProcesses": true,
+  //    "StartupMonitorDelay": 20
+  //  }
+    //,
     {
-      "NonResponsiveInterval": 20,
-      "ApplicationPath": "D:\\2016Develop\\.github\\Watchdog\\Client\\MonitoredApplication\\bin\\Debug\\MonitoredApplication.exe",
-      "ApplicationName": "MonitoredApplication",
+      "NonResponsiveInterval": 30,
+      "ApplicationPath": "D:\\2016Develop\\.vsonline\\Levin\\src\\Levin.Betfair.CollectorApp\\bin\\Debug\\net5.0\\Levin.Betfair.CollectorApp.exe",
+      "ApplicationName": "Levin.Betfair.CollectorApp",
       "UseHeartbeat": true,
       "GrantKillRequest": true,
-      "HeartbeatInterval": 20,
-      "MaxProcesses": 10,
+      "HeartbeatInterval": 5,
+      "MaxProcesses": 1,
       "MinProcesses": 1,
       "Active": true,
       "KeepExistingNoProcesses": true,
-      "StartupMonitorDelay": 20
+      "StartupMonitorDelay": 10
     }
   ],
   "ShowTrayIcon": true,
